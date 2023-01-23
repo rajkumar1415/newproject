@@ -1,0 +1,106 @@
+#%RAML 1.0
+title: calculator
+traits:
+  yuva : !include trait/trait.raml
+/addition:
+  get:
+    queryParameters:
+      number1:
+        type: integer
+        required: true
+        example: 2
+      number2:
+        type: integer
+        required: true
+        example: 5
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                "result": "the answer is 7  "
+                }
+    
+/subtraction:
+  get:
+    queryParameters:
+      number1:
+        type: integer
+        required: true
+        example: 20
+      number2:
+        type: integer
+        required: true
+        example: 5
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                "result" : "the answer is 15"
+               }
+      400:
+        body:
+          application/json:
+            example:
+               {
+                 "message ": "bad request"
+                 }         
+/multification:
+  get:
+    queryParameters:
+      number1:
+        type: integer
+        required: true
+        example: 20
+      number2:
+        type: integer
+        required: true
+        example: 5
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                "result" : "the answer is 100"
+               }
+      400:
+        body:
+          application/json:
+            example:
+               {
+                 "message ": "bad request"
+                 }         
+/division:
+  get:
+    queryParameters:
+      number1:
+        type: integer
+        required: true
+        example: 5
+      number2:
+        type: integer
+        required: true
+        example: 25
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                "result" : "the answer is 5"
+               }
+      400:
+        body:
+          application/json:
+            example:
+               {
+                 "message ": "bad request"
+                 }         
+
+
+      
+  

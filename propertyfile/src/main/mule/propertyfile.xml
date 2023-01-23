@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:secure-properties="http://www.mulesoft.org/schema/mule/secure-properties" xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns:ftp="http://www.mulesoft.org/schema/mule/ftp"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ftp http://www.mulesoft.org/schema/mule/ftp/current/mule-ftp.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/schema/mule/secure-properties/current/mule-secure-properties.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="03603caa-619d-4361-93ff-76d929bce2d1" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<http:listener-config name="HTTP_Listener_config1" doc:name="HTTP Listener config" doc:id="d648c59c-ef58-49f3-b183-b6b67f66ea60" >
+		<http:listener-connection host="${secure::http.host}" port="${secure::http.port}" />
+	</http:listener-config>
+	<db:config name="Database_Config1" doc:name="Database Config" doc:id="9868f8cb-afd9-44aa-a3c1-ee8eb40bd2d4" >
+		<db:my-sql-connection host="${secure::db.host}" port="${secure::db.port}" user="${secure::db.user}" password="${secure::db.password}" database="${secure::db.database}" />
+	</db:config>
+	<configuration-properties doc:name="Configuration properties" doc:id="25730a4c-285b-4ae4-b47c-bc5fbd5e1af4" file="new.yaml" />
+	<secure-properties:config name="Secure_Properties_Config" doc:name="Secure Properties Config" doc:id="40267437-5c18-492c-b0c9-430bcc4b8192" file="new.yaml" key="mulesoftrajkumar" />
+	<flow name="propertyfileFlow" doc:id="24f24a9c-6b7c-4de3-8dc9-e160992d6874" >
+		<http:listener doc:name="Listener" doc:id="aac8c9f5-98dc-4a62-b787-adcb8c7771ce" config-ref="HTTP_Listener_config1" path="${secure::http.path}"/>
+		<logger level="INFO" doc:name="Logger" doc:id="42308137-f4e5-437d-8eaf-60138db153b0" message="dbpassword is ${secure::db.password}"/>
+	</flow>
+</mule>

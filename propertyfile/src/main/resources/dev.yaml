@@ -1,0 +1,14 @@
+### http listener ####
+http:
+ host: "localhost"
+ port: "8079"
+ path: "property"
+ 
+### database ####
+db:
+ host: "localhost"
+ port: "3306"
+ user: "root"
+ password: "![XMXpCZjx+dmRXeA2MdFOaw==]"   
+ database: "dbyuvaraj"
+ 
